@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { getCurrentWeather, getWeatherByCoords } from "./services/weatherService";
 
 export default function App() {
-  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -33,14 +32,9 @@ export default function App() {
       setLoading(true);
       setError("");
 
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-          cleanCity
-        )},IN&units=metric&appid=${API_KEY}`
-      );
-
-      const data = await res.json();
-      if (data.cod !== 200) throw new Error("No city found");
+      const res = await getCurrentWeather(cleanCity);
+      const data = res.data;
+      if (Number(data.cod) !== 200) throw new Error(data.message || "No city found");
 
       setWeather(data);
       setCity(data.name);
@@ -57,12 +51,14 @@ export default function App() {
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const { latitude, longitude } = pos.coords;
-        const res = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
-        );
-        const data = await res.json();
-        setWeather(data);
-        setCity(data.name);
+        try {
+          const res = await getWeatherByCoords(latitude, longitude);
+          const data = res.data;
+          setWeather(data);
+          setCity(data.name);
+        } catch (e) {
+          fetchByCity("Mumbai");
+        }
       },
       () => fetchByCity("Mumbai")
     );

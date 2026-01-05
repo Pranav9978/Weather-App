@@ -12,6 +12,16 @@ export const getCurrentWeather = (city) =>
     },
   });
 
+export const getWeatherByCoords = (lat, lon) =>
+  axios.get(`${BASE_URL}/weather`, {
+    params: {
+      lat,
+      lon,
+      units: "metric",
+      appid: API_KEY,
+    },
+  });
+
 export const getForecast = (city) =>
   axios.get(`${BASE_URL}/forecast`, {
     params: {
