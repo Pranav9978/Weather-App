@@ -107,6 +107,14 @@ export default function App() {
             </div>
           </div>
         )}
+
+        {/* ✅ FOOTER */}
+        <footer className="footer">
+          <p>
+            © {new Date().getFullYear()} Weather App | Developed by{" "}
+            <b>Pranav Khegade</b>
+          </p>
+        </footer>
       </div>
     </div>
   );

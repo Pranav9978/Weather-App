@@ -98,6 +98,14 @@ body.light .card {
   margin-top: 10px;
 }
 
+.footer {
+  margin-top: 25px;
+  font-size: 13px;
+  opacity: 0.8;
+  text-align: center;
+}
+
+
 /* 📱 MOBILE */
 @media (max-width: 480px) {
   .weather-box {
