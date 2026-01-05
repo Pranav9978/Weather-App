@@ -104,6 +104,10 @@ body.light .card {
   opacity: 0.8;
   text-align: center;
 }
+.footer a {
+  color: inherit;
+  text-decoration:dashed;
+}
 
 
 /* 📱 MOBILE */
