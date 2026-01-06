@@ -108,7 +108,7 @@ export default function App() {
         <footer className="footer">
           <p>
             © {new Date().getFullYear()} Weather App | Developed by{" "}
-           <a href="https://my-portfolio-project-eight-pied.vercel.app/" target="_blank" rel="noopener noreferrer"><b>Pranav Khegade</b></a> 
+           <a href="https://pranav-portfolio-theta.vercel.app/" target="_blank" rel="noopener noreferrer"><b>Pranav Khegade</b></a> 
           </p>
         </footer>
       </div>
